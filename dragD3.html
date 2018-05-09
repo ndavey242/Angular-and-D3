@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+  <body>
+      <svg width = "700" height = "500" style="border: 1px solid gray">
+      <g>
+       <rect width = "50" height = "200" y = "100" fill="tomato"></rect>
+       <circle cy = "200" cx = "200" r = "70" fill = "steelblue"> </circle>
+      </g>
+      </svg>
+      <script>
+        var dragcontainer = d3.drag()
+        .on("drag", function(d, i) {
+          //still not completely sure about why we use "this" to select the svg elements
+          //translate operates in the form .attr("transform", "translate(" + x + "," + y + ")")
+          // in this scenario x will = d3.event.x and y will = d3.event.y
+          d3.select(this).attr("transform", "translate(" + (d.x = d3.event.x) + "," + (d.y = d3.event.y) + ")");
+        });
+        //bind data to the svg elements -- using datum instead of data because there are multiple svg elements
+        var g = d3.select("g").datum({x: 0, y: 0}).call(dragcontainer)
+      </script>
+   </body>
+</html>

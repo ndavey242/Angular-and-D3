@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="d3-3d2.js"></script>
+  </head>
+  <body>
+    <svg width="1000" height="500"></svg>
+    <script>
+
+      var origin = [500,250];
+
+      var data 	= [
+        [{x:0,y:0,z:0},{x:0,y:0,z:1},{x:0,y:1,z:1},{x:0,y:1,z:0}]
+      ];
+
+      var _3d = d3._3d()
+      .scale(50)
+  		.origin(origin);
+
+      function processData(data){
+        var square = svg.selectAll("path").data(data);
+
+        square.enter()
+        .append("path")
+        .attr("fill", "black")
+        .sort(_3d.sort)
+        .attr('d', _3d.draw);
+
+        square.exit().remove();
+      }
+
+      processData(_3d(data));
+
+    </script>
+  </body>
+</html>
