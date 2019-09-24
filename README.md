@@ -1,2 +1,1 @@
-# tryingStuffOut
-Angular and D3
+Angular JS and D3 JS side projects.
